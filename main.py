@@ -77,17 +77,11 @@ class Checker:
             else:
                 self.headers['Authorization'] = f'Bearer {bearer_token}'
                 nft_tx_count = self.get_nft_tx_count()
-                if nft_tx_count == None:
-                    return f'{self.wallet.address}:{self.wallet.private_key}:ERROR:ERROR'
-                else:
-                    logger.info(f'{self.wallet.address} | nft_tx_count: {nft_tx_count}')
-                    opbnb_tx_count = self.get_opbnb_tx_count()
-                    if not opbnb_tx_count:
-                        return f'{self.wallet.address}:{self.wallet.private_key}:ERROR:{nft_tx_count}'
-                    else:
-                        logger.info(f'{self.wallet.address} | opbnb_tx_count: {opbnb_tx_count}')
+                logger.info(f'{self.wallet.address} | nft_tx_count: {nft_tx_count}')
+                opbnb_tx_count = self.get_opbnb_tx_count()
+                logger.info(f'{self.wallet.address} | opbnb_tx_count: {opbnb_tx_count}')
 
-                        return f'{self.wallet.address}:{self.wallet.private_key}:{opbnb_tx_count}:{nft_tx_count}'
+                return f'{self.wallet.address}:{self.wallet.private_key}:{opbnb_tx_count}:{nft_tx_count}'
 
 
 def main(wallets: list):
